@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Esraa Al-abd Al-Majeed's developer portfolio featuring Django backend projects and technical skills.">
+    <title>Esraa Al-abd Al-Majeed | Django Backend Developer</title>
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo">Esraa<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="eyebrow">Junior Django Backend Developer</span>
+
+                    <h1>
+                        Hi, I'm Esraa.<br>
+                        I build <span>web applications.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        I'm an Informatics Engineering graduate focused on
+                        Python and Django backend development. I enjoy
+                        working with databases, building REST APIs, and
+                        turning ideas into functional web applications.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            Explore My Projects
+                        </a>
+
+                        <a href="#contact" class="btn btn-secondary">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="subtitle">A little about me</span>
+                    <h2>Building my path in backend development.</h2>
+                </div>
+
+                <div class="about-card">
+                    <p>
+                        I have a background in Informatics Engineering and
+                        a growing focus on backend development with Python
+                        and Django. Through hands-on projects, I'm developing
+                        my skills in database design, API development,
+                        authentication, and writing maintainable code.
+                        I'm always eager to learn, solve problems, and
+                        contribute to real-world software projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="subtitle">What I work with</span>
+                    <h2>Technical Skills</h2>
+                    <p>Technologies I'm learning and using in my projects.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Django</div>
+                    <div class="skill-item">Django REST Framework</div>
+                    <div class="skill-item">REST APIs</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">SQLite</div>
+                    <div class="skill-item">MySQL</div>
+                    <div class="skill-item">Git & GitHub</div>
+                    <div class="skill-item">HTML & CSS</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <span class="subtitle">Things I've built</span>
+                    <h2>Featured Projects</h2>
+                    <p>
+                        A selection of my practical work and learning projects.
+                    </p>
+                </div>
+               
+       <section class="categories">
+            <h2>Project Categories</h2>
+
+            <div class="category-links">
+                  <a href="{% url 'home' %}"
+                       class="{% if not selected_category %}active{% endif %}">
+                     All Projects
+                 </a>
+
+                    {% for category in categories %}
+                 <a href="?category={{ category.id }}"
+                      class="{% if selected_category == category.id|stringformat:'s' %}active{% endif %}">
+                    {{ category.name }}
+                </a>
+                     {% endfor %}
+             </div>
+        </section>
+                <div class="projects-grid">
+                    {% for project in projects %}
+                        <article class="project-card">
+                            <span class="project-number">
+                                PROJECT {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+
+                        <h3>
+                                    {% if project.slug %}
+                            <a href="{% url 'project_detail' slug=project.slug %}">
+                                     {{ project.title }}
+                            </a>
+                                    {% else %}
+                                        {{ project.title }}
+                                    {% endif %}
+                        </h3>
+
+                            <p>{{ project.description }}</p>
+
+                            <p class="project-tech">
+                                <strong>Technologies:</strong>
+                                {{ project.technologies }}
+                            </p>
+
+                            <div class="project-links">
+                                <a href="{{ project.github_url }}"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    GitHub ↗
+                                </a>
+
+                                {% if project.live_url %}
+                                    <a href="{{ project.live_url }}"
+                                       target="_blank"
+                                       rel="noopener noreferrer">
+                                        Live Demo ↗
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </article>
+                    {% empty %}
+                        <p>No projects added yet. Check back soon!</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+    <div class="container">
+        <div class="contact-card">
+
+            <span class="subtitle">LET'S CONNECT</span>
+
+            <h2>Let's Work Together</h2>
+
+            <p>
+                I'm open to junior backend developer opportunities,
+                collaborations, and meaningful projects.
+                Feel free to reach out!
+            </p>
+
+            <div class="social-links">
+
+                <a href="https://www.linkedin.com/in/esraa-abd-almajeed-0721b7275/?isSelfProfile=true"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    LinkedIn ↗
+                </a>
+
+                <a href="https://github.com/EsRaaAlmajeed"
+                   class="social-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    GitHub ↗
+                </a>
+
+                <a href="mailto:esraamajeed055@gmail.com"
+                   class="social-link">
+                    Email Me ✉
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Esraa Al-abd Al-Majeed. Built with Python & Django.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

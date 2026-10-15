@@ -1,0 +1,451 @@
+/* =========================
+   1. Global Styles
+========================= */
+
+:root {
+    --bg-color: #0b1020;
+    --card-color: #121a2e;
+    --primary-color: #a78bfa;
+    --primary-hover: #c4b5fd;
+    --text-color: #f1f5f9;
+    --muted-color: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.09);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+}
+
+/* =========================
+   2. Navigation
+========================= */
+
+.navbar {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--muted-color);
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* =========================
+   3. Hero Section
+========================= */
+
+.hero {
+    padding: 110px 0 90px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 780px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--primary-color);
+    background: rgba(167, 139, 250, 0.1);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    padding: 7px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    line-height: 1.12;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: var(--primary-color);
+}
+
+.hero-description {
+    max-width: 650px;
+    color: var(--muted-color);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 23px;
+    border-radius: 9px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #111126;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* =========================
+   4. General Sections
+========================= */
+
+section {
+    scroll-margin-top: 30px;
+}
+
+.section {
+    padding: 75px 0;
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading .subtitle {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.section-heading h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-top: 8px;
+}
+
+.section-heading p {
+    color: var(--muted-color);
+    margin-top: 10px;
+}
+
+/* =========================
+   5. About Section
+========================= */
+
+.about-card {
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.about-card p {
+    color: var(--muted-color);
+}
+
+/* =========================
+   6. Skills Section
+========================= */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.skill-item {
+    padding: 18px;
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.skill-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+}
+
+/* =========================
+   7. Projects Section
+========================= */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 25px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(167, 139, 250, 0.6);
+}
+
+.project-number {
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    color: var(--muted-color);
+    margin-bottom: 14px;
+    overflow-wrap: anywhere;
+}
+
+.project-tech {
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.project-links a {
+    color: var(--primary-color);
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.project-links a:hover {
+    color: var(--primary-hover);
+}
+
+/* =========================
+   8. Contact Section
+========================= */
+
+.contact-card {
+    background: linear-gradient(
+        135deg,
+        rgba(167, 139, 250, 0.12),
+        rgba(18, 26, 46, 0.9)
+    );
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 40px;
+    text-align: center;
+}
+
+.contact-card p {
+    color: var(--muted-color);
+    margin: 15px auto 25px;
+    max-width: 550px;
+}
+
+/* =========================
+   9. Footer
+========================= */
+
+footer {
+    padding: 25px 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--muted-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   10. Responsive Design
+========================= */
+
+@media (max-width: 600px) {
+    .nav-container {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .hero {
+        padding: 75px 0 55px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .section {
+        padding: 50px 0;
+    }
+
+    .about-card,
+    .contact-card {
+        padding: 24px;
+    }
+}
+
+/* Social Media Links */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 11px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: var(--primary-color);
+    color: #111126;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-link {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+}
+
+.project-card h3 a {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.project-card h3 a:hover {
+    color: var(--primary-color);
+}
+
+
+/* Project Categories */
+.categories {
+    margin-bottom: 35px;
+}
+
+.categories h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+    margin-top: 8px;
+    color: var(--text-color);
+}
+
+.category-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.category-links a {
+    display: inline-block;
+    padding: 9px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--muted-color);
+    background: var(--card-color);
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.category-links a:hover,
+.category-links a.active {
+    color: #111126;
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
