@@ -1,0 +1,88 @@
+[
+{
+  "model": "portfolio.project",
+  "pk": 1,
+  "fields": {
+    "title": "Little Lemon Restaurant API",
+    "slug": "little-lemon-restaurant-api",
+    "description": "A restaurant management API that supports menu browsing, table bookings, and user authentication.",
+    "technologies": "Python, Django, Django REST Framework, SQLite, Djoser.",
+    "github_url": "https://github.com/EsRaaAlmajeed/Little_Lemon",
+    "live_url": "",
+    "category": 1
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 3,
+  "fields": {
+    "title": "Secure Data Exchange Protocol",
+    "slug": "secure-data-exchange-protocol",
+    "description": "A Java-based university graduation project exploring client-server communication, cryptographic algorithms, data integrity, and digital signature concepts.",
+    "technologies": "Java, TCP/IP, RSA, ElGamal, Serpent, MD5",
+    "github_url": "https://github.com/EsRaaAlmajeed/Secure-Data-Exchange-Protocol",
+    "live_url": "",
+    "category": 2
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 4,
+  "fields": {
+    "title": "Django Developer Portfolio",
+    "slug": "django-developer-portfolio",
+    "description": "A personal portfolio website built with Django to showcase my projects, technical skills, education, and certifications. It uses Django models and ORM to manage dynamic content, supports project filtering by category, and provides an admin dashboard for managing projects and certifications.",
+    "technologies": "Python, Django, HTML, CSS, SQLite, Git",
+    "github_url": "https://github.com/EsRaaAlmajeed/esraa-portfolio/tree/master",
+    "live_url": "",
+    "category": 3
+  }
+},
+{
+  "model": "portfolio.category",
+  "pk": 1,
+  "fields": {
+    "name": "Django Backend"
+  }
+},
+{
+  "model": "portfolio.category",
+  "pk": 2,
+  "fields": {
+    "name": "Cybersecurity & Cryptography"
+  }
+},
+{
+  "model": "portfolio.category",
+  "pk": 3,
+  "fields": {
+    "name": "Web Development"
+  }
+},
+{
+  "model": "portfolio.certification",
+  "pk": 1,
+  "fields": {
+    "title": "Meta Back-End Developer Professional Certificate",
+    "issuer": "Meta",
+    "issue_date": "2026-12-10",
+    "program_name": "Completed",
+    "credential_url": "https://coursera.org/share/ee2cbb64dbaba1a7c010ef5fe1b5d732",
+    "description": "Professional certificate covering back-end development with Python and Django, web application development, APIs, database fundamentals, and version control with Git. Includes hands-on learning and practical projects.",
+    "display_order": 1
+  }
+},
+{
+  "model": "portfolio.certification",
+  "pk": 2,
+  "fields": {
+    "title": "Meta Database Engineer Professional Certificate",
+    "issuer": "Meta",
+    "issue_date": null,
+    "program_name": "In Progress · 5/9 courses completed.",
+    "credential_url": "https://www.coursera.org/organizations/syrianyouthassembly/professional-certificates/meta-database-engineer",
+    "description": "Currently pursuing the Meta Database Engineer Professional Certificate. Successfully completed 5 out of 9 courses, covering database fundamentals, version control, MySQL database structures and management, and other relevant topics. Continuing to develop practical database engineering skills.",
+    "display_order": 2
+  }
+}
+]
