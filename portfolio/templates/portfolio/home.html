@@ -12,12 +12,14 @@
 
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#home" class="logo">Esraa<span>.</span></a>
+            <a href="#home" class="logo">Esraa Al-abd Al-majeed<span>.</span></a>
 
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -74,6 +76,29 @@
                 </div>
             </div>
         </section>
+
+          <div class="container">
+        <div class="section-heading">
+            <span class="subtitle">Academic Background</span>
+            <h2>Education</h2>
+        </div>
+
+        <div class="education-card">
+            <span class="education-period">2019 — 2024</span>
+
+            <h3>Bachelor's Degree in Informatics Engineering</h3>
+
+            <p class="education-major">
+                Software & Information Systems
+            </p>
+
+            <p class="education-university">
+                Lattakia University
+            </p>
+        </div>
+    </div>
+</section>
+
 
         <section class="section" id="skills">
             <div class="container">
@@ -170,6 +195,64 @@
                 </div>
             </div>
         </section>
+          
+        <section class="section" id="certifications">
+    <div class="container">
+        <div class="section-heading">
+            <span class="subtitle">Professional Development</span>
+            <h2>Certifications</h2>
+        </div>
+
+        <div class="certifications-grid">
+            {% for item in certifications %}
+                <div class="certification-card">
+                    <div class="certification-icon">
+                        <span>✦</span>
+                    </div>
+
+                    <h3>{{ item.title }}</h3>
+                    {% if item.program_name %}
+                     <p class="certification-program">
+                          {{ item.program_name }}
+                      </p>
+                    {% endif %}
+                    <p class="certification-issuer">
+                        {{ item.issuer }}
+                    </p>
+
+                    {% if item.issue_date %}
+                        <p class="certification-date">
+                            Issued {{ item.issue_date|date:"F Y" }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.description %}
+                        <p class="certification-description">
+                            {{ item.description }}
+                        </p>
+                    {% endif %}
+
+                    {% if item.credential_url %}
+                        <a
+                            href="{{ item.credential_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="certification-link"
+                        >
+                            View Certificate
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p class="certifications-empty">
+                    Certificates will be added soon.
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 
         <section class="section" id="contact">
     <div class="container">

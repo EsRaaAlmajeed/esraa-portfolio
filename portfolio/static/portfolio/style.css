@@ -449,3 +449,144 @@ footer {
     border-color: var(--primary-color);
     transform: translateY(-2px);
 }
+
+/* Education Section */
+.education-card {
+    position: relative;
+    max-width: 750px;
+    margin: 35px auto 0;
+    padding: 35px 30px;
+    background: #121a2e;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-left: 4px solid #a78bfa;
+    border-radius: 14px;
+    text-align: left;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
+    border-color: #a78bfa;
+}
+
+.education-period {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 12px;
+    color: #c4b5fd;
+    background: rgba(167, 139, 250, 0.12);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.education-card h3 {
+    margin: 0 0 14px;
+    color: #f1f5f9;
+    font-size: 22px;
+    line-height: 1.5;
+}
+
+.education-major {
+    margin: 0 0 10px;
+    color: #c4b5fd;
+    font-size: 16px;
+}
+
+.education-university {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* Certifications Section */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 35px;
+}
+
+.certification-card {
+    padding: 28px;
+    background: #121a2e;
+    border: 1px solid rgba(167, 139, 250, 0.2);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.certification-card:hover {
+    transform: translateY(-5px);
+    border-color: #a78bfa;
+}
+
+.certification-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: rgba(167, 139, 250, 0.12);
+    color: #c4b5fd;
+    font-size: 24px;
+}
+
+.certification-card h3 {
+    margin: 0 0 12px;
+    color: #f1f5f9;
+    font-size: 19px;
+    line-height: 1.5;
+}
+
+.certification-issuer {
+    margin: 0 0 8px;
+    color: #c4b5fd;
+    font-size: 15px;
+}
+
+.certification-date {
+    margin: 0 0 12px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.certification-description {
+    margin: 0 0 18px;
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.certification-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 12px;
+    color: #c4b5fd;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.certification-link:hover {
+    color: #f1f5f9;
+}
+
+.certifications-empty {
+    color: #94a3b8;
+    line-height: 1.7;
+}
+
+.certification-program {
+    margin: 0 0 10px;
+    color: #c4b5fd;
+    font-size: 13px;
+    font-weight: 600;
+}

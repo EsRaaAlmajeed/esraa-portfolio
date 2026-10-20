@@ -27,3 +27,18 @@ class Category(models.Model):
      
     def __str__(self):
              return self.name
+         
+         
+class Certification(models.Model):
+    title= models.CharField(max_length=100)
+    issuer= models.CharField(max_length=100)
+    issue_date= models.DateField(blank=True, null=True)
+    program_name = models.CharField(max_length=200, blank=True)
+    credential_url= models.URLField(blank=True, null=True)
+    description= models.TextField(blank=True)
+    display_order= models.PositiveIntegerField(default=0)  
+    
+    
+    def __str__(self):
+             return self.title       
+         
