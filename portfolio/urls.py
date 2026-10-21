@@ -8,4 +8,5 @@ urlpatterns = [
         views.project_detail,
         name='project_detail'
     ),
+    path('temporary-import/', views.temporary_import, name='temporary_import'),
 ]
