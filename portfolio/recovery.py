@@ -79,7 +79,7 @@ def reset_admin_password(request):
     User = get_user_model()
 
     users = list(
-        User.objects.filter(is_superuser=True, is_active=True)
+        User.objects.filter(is_superuser=True)
     )
 
     if not users:
@@ -111,7 +111,7 @@ def reset_admin_password(request):
         validate_password(new_password, user)
     except ValidationError as error:
         return recovery_page(request, " ".join(error.messages))
-
+    user.is_active = True
     user.set_password(new_password)
     user.save()
 
