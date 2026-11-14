@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from portfolio.recovery import reset_admin_password
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path ('', include('portfolio.urls')),
-    path('temporary-admin-recovery/', reset_admin_password),
 ]
