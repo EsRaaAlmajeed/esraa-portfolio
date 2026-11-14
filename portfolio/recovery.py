@@ -12,32 +12,15 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 
 
-def recovery_page(request, message="", users=None):
+def recovery_page(request, message=""):
     csrf_token = get_token(request)
-
-    account_field = ""
-
-    if users is not None:
-        options = "".join(
-            f'<option value="{user.pk}">'
-            f'{escape(str(user.get_username()))}</option>'
-            for user in users
-        )
-
-        account_field = f"""
-            <label>Select Admin Account:</label><br>
-            <select name="account_id" required>
-                <option value="">Choose an account</option>
-                {options}
-            </select><br><br>
-        """
 
     return HttpResponse(f"""
         <!DOCTYPE html>
         <html>
-        <head><title>Admin Password Recovery</title></head>
+        <head><title>Admin Account Recovery</title></head>
         <body>
-            <h2>Admin Password Recovery</h2>
+            <h2>Create Admin Account</h2>
             <p>{escape(message)}</p>
 
             <form method="POST">
@@ -47,13 +30,17 @@ def recovery_page(request, message="", users=None):
                 <label>Recovery Key:</label><br>
                 <input type="password" name="recovery_key" required><br><br>
 
-                {account_field}
+                <label>Username:</label><br>
+                <input type="text" name="username" required><br><br>
+
+                <label>Email:</label><br>
+                <input type="email" name="email" required><br><br>
 
                 <label>New Password:</label><br>
                 <input type="password" name="new_password"
                        autocomplete="new-password" required><br><br>
 
-                <button type="submit">Reset Password</button>
+                <button type="submit">Create Admin Account</button>
             </form>
         </body>
         </html>
@@ -78,44 +65,35 @@ def reset_admin_password(request):
 
     User = get_user_model()
 
-    users = list(
-        User.objects.filter(is_superuser=True)
-    )
-
-    if not users:
-        return HttpResponse("No active administrator account found.")
-
-    account_id = request.POST.get("account_id", "")
-
-    if not account_id:
-        if len(users) == 1:
-            user = users[0]
-        else:
-            return recovery_page(
-                request,
-                "Select the administrator account.",
-                users
-            )
-    else:
-        user = next(
-            (u for u in users if str(u.pk) == account_id),
-            None
+    if User.objects.filter(is_superuser=True).exists():
+        return HttpResponse(
+            "An administrator account already exists. Recovery stopped."
         )
 
-        if user is None:
-            return recovery_page(request, "Invalid account selection.")
+    username = request.POST.get("username", "").strip()
+    email = request.POST.get("email", "").strip()
+    password = request.POST.get("new_password", "")
 
-    new_password = request.POST.get("new_password", "")
+    if not username or not email or not password:
+        return recovery_page(request, "All fields are required.")
+
+    if User.objects.filter(username=username).exists():
+        return recovery_page(request, "Username already exists.")
+
+    user = User(username=username, email=email)
 
     try:
-        validate_password(new_password, user)
+        validate_password(password, user)
     except ValidationError as error:
         return recovery_page(request, " ".join(error.messages))
-    user.is_active = True
-    user.set_password(new_password)
-    user.save()
+
+    User.objects.create_superuser(
+        username=username,
+        email=email,
+        password=password
+    )
 
     return HttpResponse(
-        "Password changed successfully. You can now log in to Django Admin.",
+        "Admin account created successfully. You can now log in.",
         headers={"Cache-Control": "no-store"}
     )
