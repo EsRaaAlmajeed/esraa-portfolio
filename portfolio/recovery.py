@@ -12,8 +12,25 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_http_methods
 
 
-def recovery_page(request, message=""):
+def recovery_page(request, message="", users=None):
     csrf_token = get_token(request)
+
+    account_field = ""
+
+    if users is not None:
+        options = "".join(
+            f'<option value="{user.pk}">'
+            f'{escape(str(user.get_username()))}</option>'
+            for user in users
+        )
+
+        account_field = f"""
+            <label>Select Admin Account:</label><br>
+            <select name="account_id" required>
+                <option value="">Choose an account</option>
+                {options}
+            </select><br><br>
+        """
 
     return HttpResponse(f"""
         <!DOCTYPE html>
@@ -22,6 +39,7 @@ def recovery_page(request, message=""):
         <body>
             <h2>Admin Password Recovery</h2>
             <p>{escape(message)}</p>
+
             <form method="POST">
                 <input type="hidden" name="csrfmiddlewaretoken"
                        value="{escape(csrf_token)}">
@@ -29,8 +47,7 @@ def recovery_page(request, message=""):
                 <label>Recovery Key:</label><br>
                 <input type="password" name="recovery_key" required><br><br>
 
-                <label>Username:</label><br>
-                <input type="text" name="username" required><br><br>
+                {account_field}
 
                 <label>New Password:</label><br>
                 <input type="password" name="new_password"
@@ -59,17 +76,36 @@ def reset_admin_password(request):
     if not secrets.compare_digest(submitted_key, recovery_key):
         return recovery_page(request, "Invalid recovery key.")
 
-    username = request.POST.get("username", "")
-    new_password = request.POST.get("new_password", "")
-
     User = get_user_model()
-    user = User.objects.filter(
-        username=username,
-        is_superuser=True
-    ).first()
 
-    if not user:
-        return recovery_page(request, "Invalid username.")
+    users = list(
+        User.objects.filter(is_superuser=True, is_active=True)
+    )
+
+    if not users:
+        return HttpResponse("No active administrator account found.")
+
+    account_id = request.POST.get("account_id", "")
+
+    if not account_id:
+        if len(users) == 1:
+            user = users[0]
+        else:
+            return recovery_page(
+                request,
+                "Select the administrator account.",
+                users
+            )
+    else:
+        user = next(
+            (u for u in users if str(u.pk) == account_id),
+            None
+        )
+
+        if user is None:
+            return recovery_page(request, "Invalid account selection.")
+
+    new_password = request.POST.get("new_password", "")
 
     try:
         validate_password(new_password, user)
